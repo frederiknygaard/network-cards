@@ -1,13 +1,65 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.o-form__actions button,
+.button {
+  background-color: #60aebc;
+  font: inherit;
+  border: 1px solid #60aebc;
+  border-radius: 3px;
+  padding: .25rem 1rem;
+  margin-right: 1rem;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.25);
+  color: white;
+  cursor: pointer;
+}
+
+.o-form__actions button:hover,
+.o-form__actions button:active,
+.button:hover,
+.button:active {
+  background-color: #438e9c;
+  border-color: #438e9c;    
+}
+
+.o-form {
+  width: 25rem;
+  max-width: 80%;
+  margin: 5rem auto;
+}
+
+.o-form__control label,
+.o-form__control input,
+.o-form__control textarea {
+  width: 100%;
+  display: block;
+}
+
+.o-form__control label {
+  margin-bottom: .5rem;
+}
+
+.o-form__control {
+  margin-bottom: 1rem;
+}
+
+.o-form__actions button {
+  background-color: #60aebc;
+  font: inherit;
+  border: 1px solid #60aebc;
+  border-radius: 3px;
+  padding: .25rem 1rem;
+  margin-right: 1rem;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.25);
+  color: white;
+  cursor: pointer;
+}
+
+.o-form__actions button:hover,
+.o-form__actions button:active {
+  background-color: #438e9c;
+  border-color: #438e9c;    
 }
