@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import './Auth.css';
-import AuthContext from './../context/auth-context';
+import AuthContext from '../context/auth-context';
 
 class AuthPage extends Component {
 
@@ -58,7 +57,7 @@ class AuthPage extends Component {
       };
     }
 
-    fetch('/.netlify/functions/graphql', {
+    fetch('https://network-cards-server.herokuapp.com/graphql', {
       method: 'POST',
       body: JSON.stringify(requestBody),
       headers: {

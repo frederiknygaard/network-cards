@@ -3,7 +3,6 @@ import Modal from '../components/Modal/Modal';
 import Backdrop from '../components/Backdrop/Backdrop';
 import AuthContext from '../context/auth-context';
 import EventList from '../components/Events/EventList/EventList';
-import './Events.css';
 
 class EventPage extends Component {
   state = {
