@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './EventItem.css';
-
 const eventItem = props => (
     <div className="events-list__item">
         <div key={props.id}>

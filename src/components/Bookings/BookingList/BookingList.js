@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './BookingList.css';
-
 const bookingList = props => (
     <ul className="bookings">
         {props.bookings.map(booking => (
