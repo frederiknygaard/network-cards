@@ -1,3 +1,5 @@
+import OPTIONS from './options';
+
 const getAllCookies = () => {
     const allcookies = document.cookie;
     
@@ -12,12 +14,51 @@ const getAllCookies = () => {
     return cookieobject;
 }
 
-export const getCookie = cookieName => {
+const getCookie = cookieName => {
     const cookies = getAllCookies();
     return cookies[cookieName];
 }
 
-export const setCookie = cookie => {
-    const expiration = new Date(new Date().getTime() + (cookie.expiration * 3600000)).toGMTString();
+const setCookie = cookie => {
+    let expiration = 0;
+    
+    if (cookie.expiration) {
+        expiration = new Date(new Date().getTime() + (cookie.expiration * 3600000)).toGMTString();
+    }
+
     document.cookie = `${cookie.name} = ${cookie.value};expires=${expiration}`;
+}
+
+const deleteCookie = cookie => {
+    document.cookie = `${cookie}=;expires=${new Date(0)}`;
+}
+
+const login = login => {
+
+    console.log(login)
+
+    setCookie({
+        name: OPTIONS.COOKIES.TOKEN,
+        value: login.token,
+        expiration: login.tokenExpiration
+    });
+      
+    setCookie({
+        name: OPTIONS.COOKIES.USERID,
+        value: login.userId,
+        expiration: login.tokenExpiration
+    })
+}
+
+const logout = () => {
+    deleteCookie(OPTIONS.COOKIES.USERID);
+    deleteCookie(OPTIONS.COOKIES.TOKEN);
+}
+
+export default {
+    getCookie,
+    setCookie,
+    getAllCookies,
+    login,
+    logout
 }

@@ -6,22 +6,18 @@ import EventPage from './pages/Events';
 import BookingPage from './pages/Bookings';
 import MainNavigation from './components/Navigation/MainNavigation';
 
-import { getCookie, setCookie } from './helpers/cookie';
+import cookie from './helpers/cookie';
+import OPTIONS from './helpers/options';
 
 import AuthContext from './context/auth-context';
-
-const OPTIONS = {
-  COOKIE_TOKEN: 'network_card_token',
-  COOKIE_USERID: 'network_card_userid'
-}
 
 class App extends Component {
 
   constructor(props) {
     super(props)
 
-    const token = getCookie(OPTIONS.COOKIE_TOKEN);
-    const userId = getCookie(OPTIONS.COOKIE_USERID);
+    const token = cookie.getCookie(OPTIONS.COOKIES.TOKEN);
+    const userId = cookie.getCookie(OPTIONS.COOKIES.USERID);
 
     this.state = {
       token: token ? token : null,
@@ -37,25 +33,15 @@ class App extends Component {
       token: login.token,
       userId: login.userId
     });
-
-    setCookie({
-      name: OPTIONS.COOKIE_TOKEN,
-      value: login.token,
-      expiration: login.tokenExpiration
-    });
-    
-    setCookie({
-      name: OPTIONS.COOKIE_USERID,
-      value: login.userId,
-      expiration: login.tokenExpiration
-    })
+    cookie.login(login);
   }
 
   logout(login) {
     this.setState({
       token: null,
       userId: null
-    })
+    });
+    cookie.logout();
   }
 
   render() {

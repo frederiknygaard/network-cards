@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import AuthContext from '../../context/auth-context';
-import './MainNavigation.css';
 
 const mainNavigation = props => (
     <AuthContext.Consumer>
@@ -11,7 +10,7 @@ const mainNavigation = props => (
             <header className="h-header">
                 <div className="o-nav">
                     <div className="o-nav__logo">
-                        <h1>Event Booking</h1>
+                        <h1></h1>
                     </div>
                     <div className="o-nav__items">
                         <ul>
