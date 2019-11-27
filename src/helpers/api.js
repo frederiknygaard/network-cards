@@ -21,13 +21,10 @@ const loginUser = async ({email, password}) => {
         }
     }
 
-    let response = await fetch(OPTIONS.API.ROOTURL, requestOptions);
-    
-    if (response.status !== 200) {
-        return response.errors;
-    }
-    
-    return await response.json();
+    return fetch(OPTIONS.API.ROOTURL, requestOptions)
+      .then(response => response.json())
+      .then(response => response)
+      .catch(err => err);    
 }
 
 export {

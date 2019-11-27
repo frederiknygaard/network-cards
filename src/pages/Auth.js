@@ -4,11 +4,13 @@ import AuthContext from '../context/auth-context';
 
 import { loginUser } from './../helpers/api';
 
+import styles from './Auth.scss';
+
 class AuthPage extends Component {
 
   state = {
-    isLogin: true
-  };
+    errors: ['sa']
+  }
 
   static contextType = AuthContext;
 
@@ -16,12 +18,8 @@ class AuthPage extends Component {
     super(props);
     this.emailElm = React.createRef();
     this.passwordElm = React.createRef();
-  }
 
-  swichModeHandler = () => {
-    this.setState(prevState => {
-      return {isLogin: !prevState.isLogin}
-    });
+    console.log(styles)
   }
   
   submitHandler = async event => {
@@ -30,31 +28,45 @@ class AuthPage extends Component {
     const email = this.emailElm.current.value;
     const password = this.passwordElm.current.value;
 
+    // TODO: Create better check for password and email
     if (email.trim().length === 0 || password.trim().length === 0) {
       return;
     }
 
-    let login = await loginUser({email, password});
+    let response = await loginUser({email, password});
 
-    console.log(login);
+    console.log(response)
+
+    if (response.errors) {
+      this.setState({
+        errors: response.errors
+      })
+    }
+
   }
 
   render() {
     return (
-        <form className="o-form" onSubmit={this.submitHandler}>
+        <div className={styles.wrapper}>
+        <form className={styles.form} onSubmit={this.submitHandler}>
           <div className="o-form__control">
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" ref={this.emailElm} />
+            <input placeholder="Email" type="email" id="email" ref={this.emailElm} />
           </div>
           <div className="o-form__control">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" ref={this.passwordElm} />
+            <input placeholder="Password" type="password" id="password" ref={this.passwordElm} />
+          </div>
+          <div className="o-form__errors">
+            {this.state.errors.map((error, index) => 
+              <p key={index}>{error.message}</p>
+            )}
           </div>
           <div className="o-form__actions">
             <button type="submit">Submit</button>
-            <button type="button" onClick={this.swichModeHandler}>Switch to {this.state.isLogin ? 'Signup' : 'Login'}</button>
           </div>
         </form>
+        </div>
     );
   }
 }

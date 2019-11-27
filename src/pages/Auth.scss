@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a7ceaa;
+}
+
+.form {
+    width: 300px;
+}
+
+.form .o-form__control {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.form label {
+    display: none;
+}
+
+.form input {
+    width: 100%;
+    display: block;
+    border-radius: 100px;
+    border: 1px solid #85a988;
+    padding: 15px 20px;
+    background-color: transparent;
+
+    &:focus {
+        outline: 0;
+    }
+}
