@@ -9,8 +9,9 @@ const DIST_DIR = __dirname + '/dist';
 console.log(SRC_DIR + '/index.jsx');
 
 module.exports = {
+  devtool: 'source-map',
   entry: [
-    SRC_DIR + '/index.jsx'
+    SRC_DIR + '/index.js'
   ],
   output: {
     path: DIST_DIR,

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import AuthContext from '../context/auth-context';
 
-import { loginUser } from './../helpers/api';
-
 class AuthPage extends Component {
 
   state = {
@@ -24,7 +22,7 @@ class AuthPage extends Component {
     });
   }
   
-  submitHandler = async event => {
+  submitHandler = event => {
     event.preventDefault();
 
     const email = this.emailElm.current.value;
@@ -34,9 +32,52 @@ class AuthPage extends Component {
       return;
     }
 
-    let login = await loginUser({email, password});
+    let requestBody = {
+      query: `
+        query {
+          login(email: "${email}", password: "${password}") {
+            userId
+            token
+            tokenExpiration
+          }
+        }
+      `
+    }
 
-    console.log(login);
+    if (!this.state.isLogin) {
+      requestBody = {
+        query: `
+          mutation {
+            createUser(userInput: {email: "${email}", password: "${password}"}) {
+              _id
+              email
+            }
+          }
+        `
+      };
+    }
+
+    fetch('https://network-cards-server.herokuapp.com/graphql', {
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      if (response.status !== 200 && response.status !== 201) {
+        throw new Error('Failed');
+      }
+      return response.json();
+    })
+    .then(response => {
+      console.log(response);
+      if (response.data.login.token) {
+        this.context.login(response.data.login)
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   render() {

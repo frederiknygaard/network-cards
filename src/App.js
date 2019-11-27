@@ -48,7 +48,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <AuthContext.Provider value={{token: this.state.token, userId: this.state.userId, login: this.login, logout: this.logout }}>
-          <MainNavigation />
           <main className="h-main">
             {!this.state.token && <Route component={AuthPage} />}
             {this.state.token && <p>Logged in motherfucker</p>}
