@@ -1,0 +1,33 @@
+@import '@settings/variables.scss';
+
+.form-field {
+    margin-bottom: 10px;
+}
+
+.form-field__input {
+    background-color: $color-input-field;
+    width: 100%;
+    display: block;
+    border-radius: 100px;
+    border: none;
+    padding: 15px 25px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+
+    &:focus,
+    &:active {
+        outline: 0;
+        // box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.form-field__input::placeholder {
+    color: rgba(0,0,0,0.5);
+}
+  
+.form-field__input:-ms-input-placeholder {
+    color: red;
+}
+
+.form-field__input::-ms-input-placeholder {
+    color: red;
+}

@@ -1,7 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-}
+@import '@settings/variables.scss';
 
 .wrapper {
     width: 100vw;
@@ -9,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #a7ceaa;
+    background-color: $color-selago;
 }
 
 .form {
@@ -23,17 +20,4 @@
 
 .form label {
     display: none;
-}
-
-.form input {
-    width: 100%;
-    display: block;
-    border-radius: 100px;
-    border: 1px solid #85a988;
-    padding: 15px 20px;
-    background-color: transparent;
-
-    &:focus {
-        outline: 0;
-    }
 }

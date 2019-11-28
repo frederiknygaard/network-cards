@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const path = require('path');
 const devMode = process.env.NODE_ENV !== 'production';
 const SRC_DIR = __dirname + '/src';
 const DIST_DIR = __dirname + '/dist';
@@ -31,6 +31,7 @@ module.exports = {
         test: /\.(scss|sass|css)$/,
         exclude: /node_modules/,
         loaders: [
+          'css-hot-loader',
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
@@ -55,6 +56,12 @@ module.exports = {
     ]
   },
   resolve: {
+    alias: {
+      '@settings': path.resolve(__dirname, 'src/styles/1-settings'),
+      '@tools': path.resolve(__dirname, 'src/styles/2-tools'),
+      '@generic': path.resolve(__dirname, 'src/styles/3-generic'),
+      '@utilities': path.resolve(__dirname, 'src/styles/4-utilities')
+    },
     extensions: ['*', '.js', '.jsx']
   },
   plugins: [

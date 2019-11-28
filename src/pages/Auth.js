@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import AuthContext from '../context/auth-context';
+import Form from './../components/Form/Form';
 
 import { loginUser } from './../helpers/api';
 
@@ -9,7 +10,7 @@ import styles from './Auth.scss';
 class AuthPage extends Component {
 
   state = {
-    errors: ['sa']
+    errors: []
   }
 
   static contextType = AuthContext;
@@ -46,27 +47,18 @@ class AuthPage extends Component {
   }
 
   render() {
+
+    const formfields = [
+      {
+        type: "password",
+        placeholder: "Password"
+      }
+    ]
+
     return (
-        <div className={styles.wrapper}>
-        <form className={styles.form} onSubmit={this.submitHandler}>
-          <div className="o-form__control">
-            <label htmlFor="email">Email</label>
-            <input placeholder="Email" type="email" id="email" ref={this.emailElm} />
-          </div>
-          <div className="o-form__control">
-            <label htmlFor="password">Password</label>
-            <input placeholder="Password" type="password" id="password" ref={this.passwordElm} />
-          </div>
-          <div className="o-form__errors">
-            {this.state.errors.map((error, index) => 
-              <p key={index}>{error.message}</p>
-            )}
-          </div>
-          <div className="o-form__actions">
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-        </div>
+      <div className={styles.wrapper}>
+        <Form formfields={formfields} />
+      </div>
     );
   }
 }

@@ -1,0 +1,21 @@
+@import '@settings/variables.scss';
+
+.button {
+    background-color: $color-button-background;
+    border: none;
+    width: 100%;
+    padding: 15px 25px;
+    border-radius: 100px;
+    color: $color-white;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:hover {
+        background-color: lighten($color-button-background, 5%);
+    }
+}
