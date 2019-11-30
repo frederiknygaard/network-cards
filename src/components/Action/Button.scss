@@ -6,10 +6,14 @@
     width: 100%;
     padding: 15px 25px;
     border-radius: 100px;
-    color: $color-white;
     cursor: pointer;
     transition: background-color 0.1s ease;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+
+    &--loading {
+        composes: button;
+    }
 
     &:focus {
         outline: 0;
@@ -17,5 +21,92 @@
 
     &:hover {
         background-color: lighten($color-button-background, 5%);
+    }
+}
+
+.button__text {
+    color: $color-white;
+    opacity: 1;
+    transition: .1s ease opacity;
+
+    .button--loading & {
+        opacity: 0;
+    }
+}
+
+
+.button__loader {
+    display: inline-block;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    opacity: 0;
+    transition: .1s ease opacity;
+
+    .button--loading & {
+        opacity: 1;
+    }
+}
+
+.button__loader span {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #fff;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.button__loader span:nth-child(1) {
+    left: 8px;
+    animation: button__loader1 0.6s infinite;
+}
+
+.button__loader span:nth-child(2) {
+    left: 8px;
+    animation: button__loader2 0.6s infinite;
+}
+
+.button__loader span:nth-child(3) {
+    left: 32px;
+    animation: button__loader2 0.6s infinite;
+}
+
+.button__loader span:nth-child(4) {
+    left: 56px;
+    animation: button__loader3 0.6s infinite;
+}
+
+@keyframes button__loader1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes button__loader3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes button__loader2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(24px, 0);
     }
 }

@@ -1,0 +1,13 @@
+.login-form {
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+}
+
+.login-form__errors {
+    bottom: -25px;
+    width: 100%;
+    text-align: center;
+    color: red;
+    position: absolute;
+}
